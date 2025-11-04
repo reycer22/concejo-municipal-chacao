@@ -3,27 +3,66 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import AboutHeroImage from '../assets/logo1.png';
+import '../styles/home.css';
 ---
 
 <!doctype html>
 <html lang="es">
 
+
 <head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
-	<body>
+
+	<style>
+    ul li a,
+    p a {
+      color: #6b6b6b;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    ul li a:hover,
+    p a:hover {
+      color: #000;
+      text-decoration: underline;
+    }
+  </style>
+
+	<body>  
+
 		<Header />
 		<main>
-			<h1> Hola Ciudadano!</h1>
-			<p>
-				Bienvenido al blog oficial del Concejo Municipal de Chacao, el órgano legislativo que se 
-				organiza en distintas comisiones de trabajo para atender diversas áreas. Entre ellas se 
-				encuentran: la Comisión de Hacienda y Contraloría, la Comisión de Capital Humano, la Comisión 
-				de Bienestar e Innovación, la Comisión de Ecología y Desarrollo Sustentable, la Comisión de Gestión Urbana 
-				y Turismo, la Comisión de Seguridad Ciudadana y Servicios Públicos, y la Comisión de Participación Ciudadana.
-			</p>
 
-			<p>Se contituye por:</p>
+			<!-- Flechas fijas al fondo -->
+    		<div class="arrow arrow-left">
+      		<div class="chevron"></div>
+      		<div class="chevron"></div>
+      		<div class="chevron"></div>
+      		<div class="chevron"></div>
+      		<div class="chevron"></div>
+      		<div class="chevron"></div>
+    		</div>
+
+    		<div class="arrow arrow-right">
+      		<div class="chevron"></div>
+      		<div class="chevron"></div>
+      		<div class="chevron"></div>
+      		<div class="chevron"></div>
+      		<div class="chevron"></div>
+      		<div class="chevron"></div>
+    		</div>
+
+  				<div style="text-align: center; margin-top: 2rem;">
+
+   				 	<h1>Hola Ciudadano!</h1>
+   					 <img src={AboutHeroImage.src} alt="Logo del Concejo Municipal" style="max-width: 600px; width: 90%; height: auto; margin-top: 1.5rem; border-radius: 30px;" />
+  				</div>
+			
+			</div>
+
+				<p>Se contituye por:</p>
 
 			<ul>
   			<li><a href="/direccion">Dirección de Atencion y Orientación al Ciudadano</a></li>
@@ -32,27 +71,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			<li><a href="/">Oficina de Patrimonio Cultural</a></li>
 			</ul>
 
-			<p>Presidente: Máximo Sánchez</p>
-
-			<h2>
-  			<span class="poppins-light">Dirección de atención</span> 
-  			<span class="poppins-bold">Orientación al ciudadano</span>
-			</h2>
-
-			<style lang="css">
-  			@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap');
-
-  			.poppins-light {
-  	  		font-family: 'Poppins', sans-serif;
-    		font-weight: 300;
-  			}
-  			.poppins-bold {
-    		font-family: 'Poppins', sans-serif;
-    		font-weight: 700;
-  			}
-		</style>
-
 			<p>
+			
 				Promueve la Participación Ciudadana, suministra y ofrece de forma oportuna, adecuada y efectiva 
 				la información requerida, así como también orientar, recibir y tramitar denuncias, quejas, reclamos, 
 				sugerencias, peticiones y solicitudes que formulen los ciudadanos, sea por vía presencial o por vía 
@@ -62,8 +82,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			<p>Dir. Josethlyn Silva</p>
 
 			<h3>
-  			<span class="poppins-light">Secreataria</span> 
-  			<span class="poppins-bold">Municipal</span>
+  			<span class="poppins-bold">Secretaria Municipal</span>
 			</h3>
 
 			<style lang="css">
@@ -91,7 +110,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			<p>Sub sec. Ibelisse Rodríguez</p>
 
 			<h4>
-  			<span class="poppins-light">OFICINA DE </span> 
+  			<span class="poppins-bold">OFICINA DE </span> 
   			<span class="poppins-bold">PATRIMONIO CULTURAL</span>
 			</h4>
 
@@ -117,5 +136,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 		</main>
 		<Footer />
+		
 	</body>
+
 </html>
+
