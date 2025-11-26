@@ -116,42 +116,25 @@ p.subtitle {
 
 /* --- Optimización móvil --- */
 @media (max-width: 600px) {
-
-  main {
-    padding: 1.5rem 0.6rem;
-  }
-
   .news-grid {
-    grid-template-columns: 1fr; /* una columna, pero bien proporcionada */
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
-
   .card {
     border-radius: 10px;
+    max-width: 100vw; /* Nuevo: asegura que no se salga */
     overflow: hidden;
   }
-
   .card img {
-    aspect-ratio: 4 / 3; /* ✔ mucho más natural, menos alta */
+    aspect-ratio: 16 / 10; /* Reemplaza 4/3 */
     object-fit: cover;
+    display: block;
+    width: 100%;
+    max-width: 100vw;
   }
-
-  .card-content {
-    padding: 0.9rem 1rem;
-  }
-
-  .card-content h2 {
-    font-size: 1rem;
-    margin-bottom: 0.3rem;
-  }
-
+  .card-content h2,
   .card-content p {
-    font-size: 0.85rem;
-    margin-bottom: 0.6rem;
-  }
-
-  .card-content small {
-    font-size: 0.75rem;
+    overflow-wrap: anywhere; /* Previene textos largos fuera de tarjeta */
   }
 }
 
