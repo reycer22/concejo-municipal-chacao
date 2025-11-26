@@ -122,21 +122,21 @@ p.subtitle {
 /* --- Optimización móvil --- */
 @media (max-width: 600px) {
 
-  /* Corrección del centrado del contenedor + margen suave a la izquierda */
+  /* Contenedor con márgenes suaves a ambos lados */
   main {
     max-width: 100% !important;
-    padding-left: 1rem;   /* <-- AUMENTADO ligeramente */
-    padding-right: 0.8rem;
+    padding-left: 1rem;     /* margen sutil izquierda */
+    padding-right: 1rem;    /* margen sutil derecha */
   }
 
-  /* Ajusta el grid a una sola columna */
+  /* Grid de una sola columna */
   .news-grid {
     grid-template-columns: 1fr;
     gap: 1.8rem;
     width: 100%;
   }
 
-  /* Tarjeta más compacta y centrada */
+  /* Tarjeta centrada y compacta */
   .card {
     width: 100%;
     max-width: 95vw;
@@ -145,7 +145,7 @@ p.subtitle {
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
 
-  /* Imagen más baja → no tapa la pantalla */
+  /* Imagen más baja */
   .card img {
     aspect-ratio: 4 / 3;
     object-fit: cover;
@@ -153,7 +153,6 @@ p.subtitle {
     border-top-right-radius: 16px;
   }
 
-  /* Texto más grande para lectura */
   .card-content {
     padding: 1.3rem;
   }
@@ -171,7 +170,6 @@ p.subtitle {
     font-size: 0.95rem;
   }
 
-  /* Ajustes del título superior */
   h1 {
     font-size: 2rem;
   }
