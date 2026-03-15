@@ -1,178 +1,178 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';  // ← ESTO ESTÁ CORRECTO
+import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 const posts = (await getCollection('blog')).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-        <style>
-            main {
-                width: 960px;
-            }
-            ul {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 2rem;
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-            }
-            ul li {
-                width: calc(50% - 1rem);
-                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-            ul li.featured-post {
-                width: 100% !important;
-                margin-bottom: 1rem !important;
-                text-align: center !important;
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            ul li.featured-post.animate {
-                opacity: 1 !important;
-                transform: scale(1) !important;
-            }
-            ul li * {
-                text-decoration: none;
-                transition: 0.2s ease;
-            }
-            ul li img {
-                margin-bottom: 0.5rem;
-                border-radius: 12px;
-                width: 100%;
-                height: auto;
-                object-fit: cover;
-            }
-            ul li a {
-                display: block;
-            }
-            .title {
-                margin: 0;
-                color: rgb(var(--black));
-                line-height: 1;
-                font-size: 1.25rem;
-            }
-            ul li.featured-post .title {
-                font-size: 2.369rem !important;
-            }
-            .date {
-                margin: 0;
-                color: rgb(var(--gray));
-                font-size: 0.9rem;
-            }
-            ul li a:hover h4,
-            ul li a:hover .date {
-                color: rgb(var(--accent));
-            }
-            ul a:hover img {
-                box-shadow: var(--box-shadow);
-            }
-            @media (max-width: 720px) {
-                ul {
-                    gap: 0.5em;
-                }
-                ul li,
-                ul li.featured-post {
-                    width: 100%;
-                }
-                ul li.featured-post {
-                    margin-bottom: 0;
-                }
-                ul li.featured-post .title {
-                    font-size: 1.563em !important;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <Header />
-        <main>
-            <div style="text-align: center; margin-top: 2rem;">
-                <h1>Comisiones del Concejo Municipal</h1>
-                <p>Consulta la información de cada comisión, sus concejales y actividades.</p>
-            </div>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      main {
+        width: 960px;
+      }
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      ul li {
+        width: calc(50% - 1rem);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      ul li.featured-post {
+        width: 100% !important;
+        margin-bottom: 1rem !important;
+        text-align: center !important;
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      ul li.featured-post.animate {
+        opacity: 1 !important;
+        transform: scale(1) !important;
+      }
+      ul li * {
+        text-decoration: none;
+        transition: 0.2s ease;
+      }
+      ul li img {
+        margin-bottom: 0.5rem;
+        border-radius: 12px;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+      ul li a {
+        display: block;
+      }
+      .title {
+        margin: 0;
+        color: rgb(var(--black));
+        line-height: 1;
+        font-size: 1.25rem;
+      }
+      ul li.featured-post .title {
+        font-size: 2.369rem !important;
+      }
+      .date {
+        margin: 0;
+        color: rgb(var(--gray));
+        font-size: 0.9rem;
+      }
+      ul li a:hover h4,
+      ul li a:hover .date {
+        color: rgb(var(--accent));
+      }
+      ul a:hover img {
+        box-shadow: var(--box-shadow);
+      }
+      @media (max-width: 720px) {
+        ul {
+          gap: 0.5em;
+        }
+        ul li,
+        ul li.featured-post {
+          width: 100%;
+        }
+        ul li.featured-post {
+          margin-bottom: 0;
+        }
+        ul li.featured-post .title {
+          font-size: 1.563em !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div style="text-align: center; margin-top: 2rem;">
+        <h1>Comisiones del Concejo Municipal</h1>
+        <p>Consulta la información de cada comisión, sus concejales y actividades.</p>
+      </div>
 
-            <section>
-                <ul id="posts-list">
-                    {
-                        (() => {
-                            const randomIndex = Math.floor(Math.random() * posts.length);
-                            const featuredPost = posts[randomIndex];
-                            const otherPosts = posts.filter((_, index) => index !== randomIndex);
-                            
-                            return [
-                                <li class="featured-post post-item" data-post-id={featuredPost.id}>
-                                    <a href={`/blog/${featuredPost.id}/`}>
-                                        {featuredPost.data.heroImage && (
-                                            <Image 
-                                                width={720} 
-                                                height={360} 
-                                                src={featuredPost.data.heroImage} 
-                                                alt={featuredPost.data.title} 
-                                            />
-                                        )}
-                                        <h4 class="title">{featuredPost.data.title}</h4>
-                                        <p class="date">● Actualizado hoy</p>
-                                    </a>
-                                </li>,
-                                ...otherPosts.map((post) => (
-                                    <li class="post-item" data-post-id={post.id}>
-                                        <a href={`/blog/${post.id}/`}>
-                                            {post.data.heroImage && (
-                                                <Image 
-                                                    width={720} 
-                                                    height={360} 
-                                                    src={post.data.heroImage} 
-                                                    alt={post.data.title} 
-                                                />
-                                            )}
-                                            <h4 class="title">{post.data.title}</h4>
-                                            <p class="date">● Actualizado hoy</p>
-                                        </a>
-                                    </li>
-                                ))
-                            ];
-                        })()
-                    }
-                </ul>
-            </section>
-        </main>
-        <Footer />
+      <section>
+        <ul id="posts-list">
+          {
+            posts.map((post, index) => (
+              <li
+                class={`post-item ${index === 0 ? 'featured-post' : ''}`}
+                data-post-id={post.id}
+              >
+                <a href={`/blog/${post.id}/`}>
+                  {post.data.heroImage && (
+                    <Image
+                      width={720}
+                      height={360}
+                      src={post.data.heroImage}
+                      alt={post.data.title}
+                    />
+                  )}
+                  <h4 class="title">{post.data.title}</h4>
+                  <p class="date">
+                    <span style="color: rgb(var(--accent)); font-weight: 500;">●</span>
+                    {' '}
+                    Actualizado hoy
+                  </p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+    <Footer />
 
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const featuredPost = document.querySelector('.featured-post');
-                if (featuredPost) {
-                    setTimeout(() => {
-                        featuredPost.classList.add('animate');
-                    }, 100);
-                }
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const list = document.getElementById('posts-list');
+        const items = Array.from(document.querySelectorAll('.post-item'));
+        if (!list || items.length === 0) return;
 
-                const now = new Date();
-                const options = { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric',
-                    timeZone: 'America/Caracas'
-                };
-                const today = now.toLocaleDateString('es-VE', options);
-                
-                const dateElements = document.querySelectorAll('.date');
-                dateElements.forEach(el => {
-                    el.innerHTML = `<span style="color: rgb(var(--accent)); font-weight: 500;">●</span> Actualizado: ${today}`;
-                });
-            });
-        </script>
-    </body>
+        // escoger uno al azar
+        const randomIndex = Math.floor(Math.random() * items.length);
+        const randomItem = items[randomIndex];
+
+        // quitar la clase featured de todos
+        items.forEach((el) => el.classList.remove('featured-post', 'animate'));
+
+        // marcar el nuevo destacado
+        randomItem.classList.add('featured-post');
+
+        // moverlo al inicio de la lista
+        list.prepend(randomItem);
+
+        // animación
+        setTimeout(() => {
+          randomItem.classList.add('animate');
+        }, 100);
+
+        // actualizar texto de fecha a la fecha actual
+        const now = new Date();
+        const options = {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          timeZone: 'America/Caracas',
+        };
+        const today = now.toLocaleDateString('es-VE', options);
+        document.querySelectorAll('.date').forEach((el) => {
+          el.innerHTML =
+            `<span style="color: rgb(var(--accent)); font-weight: 500;">●</span> Actualizado: ${today}`;
+        });
+      });
+    </script>
+  </body>
 </html>
+
