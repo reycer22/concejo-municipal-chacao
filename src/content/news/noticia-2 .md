@@ -6,4 +6,4 @@ heroImage: "../../assets/azul.png"
 ---
 
 
-Hola Mi Noticia es..
+Hola Mi Noticia es.. 
